@@ -1,15 +1,25 @@
-import { Controller, Get, Post, Put, Patch, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Put,
+  Patch,
+  Delete,
+  Param,
+  Query,
+  Body,
+} from '@nestjs/common';
 
 @Controller('users')
 export class UsersController {
-  @Get()
-  public getUsers() {
-    return 'Get Request For Users';
+  @Get('/:id/')
+  public getUsers(@Param() param: string, @Query() query: string) {
+    return ['Get Request For Users', param, query];
   }
 
-  @Post()
-  public createUser() {
-    return 'Post Request For Create User';
+  @Post('/signup')
+  public createUser(@Body() body: string) {
+    return body;
   }
   @Put()
   public updateUser() {
